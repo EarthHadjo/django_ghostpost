@@ -1,0 +1,11 @@
+{% block content%}
+
+<hr><br>
+<form method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% comment %} <input type='Submit' value='Submit'/> {% endcomment %}
+</form>
+
+
+{% endblock%}

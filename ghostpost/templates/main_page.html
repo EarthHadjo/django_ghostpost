@@ -1,0 +1,42 @@
+<html>
+
+
+<head>
+    <title>Earth's GHOST POST</title>
+</head>
+
+<body>
+    <h1>GHOST POST</h1>
+    <p>Filter by:
+        <span>
+            <a href="/"><button>All</button></a>
+            <a href="/boasts"><button>Boasts</button></a>
+            <a href="/roasts"><button>Roasts</button></a>
+            <a href="/upvotes"><button>Up</button></a>
+            <a href="/downvotes"><button>Down</button></a>
+            <a href="/addpost"></a>
+            
+        </span>
+    </p>
+
+    {% block content %}
+
+    <ul>
+        {% if foo.is_boast %}<h4>Boast:</h4><p>{{foo.post}}</p>
+        {% else %} <h4>Roast:</h4><p>{{foo.post}}</p>
+        {% endif %} 
+        <button><a href='/upvotes/{{foo.id}}/'>Upvotes: {{foo.upvotes}}</a></button>
+        <button><a href='/downvotes/{{foo.id}}/'>Downvotes: {{foo.downvotes}}</a></button>
+        <p>Votes:{{foo.total_votes}}</p>
+        <p>{{foo.submission_time}}</p>
+        </ul> 
+
+    <hr><br>
+
+
+    {% endblock content %}
+
+     <a href="/addpost"><button>Submit New Boast or Roast Here!</button></a>   
+     
+</body>
+</html>
