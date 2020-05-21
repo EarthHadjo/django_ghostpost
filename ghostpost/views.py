@@ -26,25 +26,25 @@ def add_post_view(request):
         else:
             print(add_post_forms.errors)
     form = add_post_forms()
-    return render(request, 'main_page.html', {'form': form})
+    return render(request, 'postadd.html', {'form': form})
 
 
-def upvotes(request, element_id):
-    vote = Post.objects.get(id=element_id)
+def upvotes(request, id):
+    vote = Post.objects.get(id=id)
     vote.upvotes += 1
-    Post.save()
+    vote.save()
     return HttpResponseRedirect(reverse('home'))
 
 
-def downvotes(request, element_id):
-    vote = Post.objects.get(id=element_id)
+def downvotes(request, id):
+    vote = Post.objects.get(id=id)
     vote.downvotes += 1
-    Post.save()
+    vote.save()
     return HttpResponseRedirect(reverse('home'))
 
 
 def viewup(request):
-    up = Post.objects.values().order_by('-upvotes')
+    up = Post.objects.all().order_by('-upvotes')
     return render(request, 'main_page.html', {'up': up})
 
 

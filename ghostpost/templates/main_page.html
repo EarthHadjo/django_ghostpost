@@ -12,7 +12,7 @@
             <a href="/"><button>All</button></a>
             <a href="/boasts"><button>Boasts</button></a>
             <a href="/roasts"><button>Roasts</button></a>
-            <a href="/upvotes"><button>Up</button></a>
+            <a href="/sortup"><button>Up</button></a>
             <a href="/downvotes"><button>Down</button></a>
             <a href="/addpost"></a>
             
@@ -20,19 +20,23 @@
     </p>
 
     {% block content %}
-
+{% for foo in posts %}
+    {{ foo.message }}
+    
     <ul>
-        {% if foo.is_boast %}<h4>Boast:</h4><p>{{foo.post}}</p>
-        {% else %} <h4>Roast:</h4><p>{{foo.post}}</p>
+        {% if foo.post_type %}
+            <h4>Boast:</h4>
+        {% else %} 
+            <h4>Roast:</h4>
         {% endif %} 
-        <button><a href='/upvotes/{{foo.id}}/'>Upvotes: {{foo.upvotes}}</a></button>
-        <button><a href='/downvotes/{{foo.id}}/'>Downvotes: {{foo.downvotes}}</a></button>
+        <button type="POST"><a href="/upvotes/{{foo.id}}">Upvotes:</a></button>{{ foo.upvotes }}
+        <button type="POST"><a href="/downvotes/{{foo.id}}">Downvotes:</a></button>{{ foo.downvotes }}
         <p>Votes:{{foo.total_votes}}</p>
-        <p>{{foo.submission_time}}</p>
+        <p>{{foo.submit_time}}</p>
         </ul> 
 
     <hr><br>
-
+{% endfor %}
 
     {% endblock content %}
 

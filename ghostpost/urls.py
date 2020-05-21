@@ -22,11 +22,11 @@ from ghostpost import views
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('', views.index_view, name="home"),
-    path('upvotes/', views.upvotes, name="upvotes"),
-    path('downvotes/', views.downvotes, name="downvotes"),
+    path('upvotes/<int:id>', views.upvotes, name="upvotes"),
+    path('downvotes/<int:id>', views.downvotes, name="downvotes"),
     path('addpost/', views.add_post_view, name="addpost"),
     path('boasts/', views.boast, name="boast"),
-    path('boasts/votes/', views.boast, name="boastvotes"),
     path('roasts/', views.roast, name="roast"),
-    path('roasts/votes/', views.roast, name="roastvotes"),
+    path('sortup/', views.viewup, name="viewup")
+    
 ]
