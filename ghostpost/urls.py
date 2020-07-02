@@ -27,6 +27,5 @@ urlpatterns = [
     path('addpost/', views.add_post_view, name="addpost"),
     path('boasts/', views.boast, name="boast"),
     path('roasts/', views.roast, name="roast"),
-    path('sortup/', views.viewup, name="viewup")
-    
+
 ]

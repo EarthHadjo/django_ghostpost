@@ -8,18 +8,17 @@
 <body>
     <h1>GHOST POST</h1>
     <p>Filter by:
-        <span>
             <a href="/"><button>All</button></a>
             <a href="/boasts"><button>Boasts</button></a>
             <a href="/roasts"><button>Roasts</button></a>
-            <a href="/sortup"><button>Up</button></a>
-            <a href="/downvotes"><button>Down</button></a>
+            <a href="/?sort=up"><button>Up</button></a>
+            <a href="/?sort=down"><button>Down</button></a>
             <a href="/addpost"></a>
             
-        </span>
+        
     </p>
 
-    {% block content %}
+
 {% for foo in posts %}
     {{ foo.message }}
     
@@ -31,14 +30,12 @@
         {% endif %} 
         <button type="POST"><a href="/upvotes/{{foo.id}}">Upvotes:</a></button>{{ foo.upvotes }}
         <button type="POST"><a href="/downvotes/{{foo.id}}">Downvotes:</a></button>{{ foo.downvotes }}
-        <p>Votes:{{foo.total_votes}}</p>
         <p>{{foo.submit_time}}</p>
         </ul> 
 
     <hr><br>
 {% endfor %}
 
-    {% endblock content %}
 
      <a href="/addpost"><button>Submit New Boast or Roast Here!</button></a>   
      

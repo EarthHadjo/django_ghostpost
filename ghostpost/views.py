@@ -1,5 +1,5 @@
 from django.shortcuts import render, reverse
-from ghostpost.models import Post
+from ghostpost.models import Post, Sort
 from ghostpost.forms import add_post_forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import timezone
@@ -8,6 +8,11 @@ from django.utils import timezone
 # Create your views here.
 def index_view(request):
     posts = Post.objects.all().order_by('-submit_time')
+    sort = request.GET.get('sort')
+    if sort == 'up':
+        posts = sorted(list(posts), key= lambda y: y.upvotes-y.downvotes, reverse=True)
+    elif sort == 'down':
+        posts = sorted(list(posts), key= lambda y: y.upvotes-y.downvotes)
     return render(request, 'main_page.html', {'posts': posts})
 
 
@@ -61,3 +66,4 @@ def roast(request):
 def boast(request):
     boast = Post.objects.filter(post_type=True).order_by('-date')
     return render(request, 'main_page.html', {'boast': boast})
+
